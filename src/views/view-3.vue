@@ -44,7 +44,6 @@
                     return parseInt(this.a) + parseInt(this.b);
                 }
             });
-            (<any>Vue)['util'].defineReactive(this, 'computedVal');
 
             Object.defineProperty(this, 'addOne', {
                 configurable: true,

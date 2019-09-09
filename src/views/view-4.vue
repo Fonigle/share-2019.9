@@ -29,12 +29,14 @@
         },
         created() {
             Object.defineProperty(this, 'computedVal', {
+                configurable: true,
                 get() {
                     return parseInt(this.a) + parseInt(this.b);
                 }
             });
 
             Object.defineProperty(this, 'addOne', {
+                configurable: true,
                 get() {
                     return this.computedVal + 1;
                 }
@@ -42,6 +44,7 @@
         },
         mounted() {
             Object.defineProperty(this, 'addTwo', {
+                configurable: true,
                 get() {
                     return this.computedVal + 2;
                 }

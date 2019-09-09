@@ -16,7 +16,7 @@
     </div>
 </template>
 <script lang="ts">
-    import { Vue, Component } from "vue-property-decorator";
+    import { Vue, Component, Watch } from "vue-property-decorator";
 
     // @Component
     // export default class MyView3 extends Vue {
@@ -39,16 +39,24 @@
 
         created() {
             Object.defineProperty(this, 'computedVal', {
+                configurable: true,
                 get() {
                     return parseInt(this.a) + parseInt(this.b);
                 }
             });
+            (<any>Vue)['util'].defineReactive(this, 'computedVal');
 
             Object.defineProperty(this, 'addOne', {
+                configurable: true,
                 get() {
                     return this.computedVal + 1;
                 }
             });
+        }
+
+        @Watch('computedVal')
+        watchComputedVal(newVal: number) {
+            console.log(newVal);
         }
     }
 </script>
